@@ -1,5 +1,6 @@
 #import "installer/FabricUtils.h"
 #import "ModpackUtils.h"
+#import "utils.h"
 
 @implementation ModpackUtils
 
@@ -25,7 +26,7 @@
         NSData *data = [archive extractData:fileInfo error:error];
         BOOL written = [data writeToFile:destItemPath options:NSDataWritingAtomic error:error];
         *stop = !data || !written;
-        if (!*stop) {
+        if (!*stop && getPrefBool(@"general.debug_logging")) {
             NSLog(@"[ModpackDL] Extracted %@", fileInfo.filename);
         }
     } error:error];

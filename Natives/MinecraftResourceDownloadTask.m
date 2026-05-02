@@ -24,6 +24,7 @@
     configuration.timeoutIntervalForRequest = 86400;
     //backgroundSessionConfigurationWithIdentifier:@"net.kdt.pojavlauncher.downloadtask"];
     self.manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    self.manager.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     self.fileList = [NSMutableArray new];
     self.progressList = [NSMutableArray new];
     self.requiresMinecraftAccess = YES;
@@ -444,8 +445,12 @@
 - (void)finishDownloadWithErrorString:(NSString *)error {
     [self.progress cancel];
     [self.manager invalidateSessionCancelingTasks:YES resetSession:YES];
-    showDialog(localize(@"Error", nil), error);
-    self.handleError();
+    dispatch_async(dispatch_get_main_queue(), ^{
+        showDialog(localize(@"Error", nil), error);
+        if (self.handleError) {
+            self.handleError();
+        }
+    });
 }
 
 - (void)finishDownloadWithError:(NSError *)error file:(NSString *)file {
