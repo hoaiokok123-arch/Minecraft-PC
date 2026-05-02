@@ -31,6 +31,7 @@ include_directories(
   "external/ballpa1n"
   "external/ballpa1n/wrapped"
   "external/mach"
+  "external/UnzipKit/Source"
 )
 
 # For cacio support library

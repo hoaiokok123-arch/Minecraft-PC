@@ -56,6 +56,7 @@ jobs:
           }
 
           fetch_repo https://github.com/AFNetworking/AFNetworking Natives/external/AFNetworking
+          fetch_repo https://github.com/abbeycode/UnzipKit Natives/external/UnzipKit
           fetch_repo https://github.com/khanhduytran0/DBNumberedSlider Natives/external/DBNumberedSlider
           fetch_repo https://github.com/khanhduytran0/fishhook Natives/external/fishhook jev/main
           fetch_repo https://github.com/MobileGL-Dev/MobileGlues Natives/external/MobileGlues main
