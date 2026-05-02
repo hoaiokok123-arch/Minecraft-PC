@@ -370,8 +370,9 @@
     NSString *folderName = [self folderNameForProjectType:projectType];
     NSString *targetGameDir = [modDetail[@"targetGameDir"] isKindOfClass:NSString.class] ?
         [modDetail[@"targetGameDir"] stringByStandardizingPath] : nil;
+    NSString *baseGameDir = targetGameDir.length > 0 ? targetGameDir : [self gameDirectoryForSelectedProfile];
     NSString *destDir = replacingExistingMod ? replacePath.stringByDeletingLastPathComponent :
-        [[targetGameDir.length > 0 ? targetGameDir : [self gameDirectoryForSelectedProfile]] stringByAppendingPathComponent:folderName];
+        [baseGameDir stringByAppendingPathComponent:folderName];
     NSString *destPath = [destDir stringByAppendingPathComponent:destName];
     NSString *downloadPath = destPath;
     if (replacingExistingMod) {
