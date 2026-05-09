@@ -64,6 +64,12 @@
             @"auto_ram": @(!getEntitlementValue(@"com.apple.private.memorystatus")),
             @"allocated_memory": [NSNumber numberWithFloat:roundf((NSProcessInfo.processInfo.physicalMemory / 1048576) * 0.25)]
         }.mutableCopy,
+        @"crash_ai": @{
+            @"base_url": @"",
+            @"api_key": @"",
+            @"model": @"deepseek-v4-pro",
+            @"log_tail_lines": @(300)
+        }.mutableCopy,
         @"internal": @{
             @"isolated": @NO,
             @"latest_version": [NSDictionary new]
